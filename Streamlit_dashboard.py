@@ -4,7 +4,15 @@ import boto3
 import time
 import os
 from dotenv import load_dotenv
+# Add this temporary debug code
+import os
 
+
+key_id = os.environ.get("AWS_ACCESS_KEY_ID", "")
+secret = os.environ.get("AWS_SECRET_ACCESS_KEY", "")
+
+st.write(f"DEBUG: Access Key Length: {len(key_id)}")
+st.write(f"DEBUG: Secret Key Length: {len(secret)}")
 # --- 1. LOAD ENVIRONMENT VARIABLES ---
 # This looks for a .env file to load AWS credentials safely
 load_dotenv()
@@ -124,7 +132,7 @@ with tab2:
             st.bar_chart(df_city, x='city', y='customer_count')
 
     # Top Performing Stores (Visualization only)
-    st.subheader("Top 15 Stores by Revenue")
+    st.subheader("Top Stores by Revenue")
     q_stores = """
         SELECT store_id, SUM(net_amount) AS revenue
         FROM ccdataset.transaction
@@ -140,7 +148,7 @@ with tab2:
 # TAB 3: CUSTOMER INSIGHTS
 # ==========================================
 with tab3:
-    st.subheader("Top 10 High Value Customers (Last 30 Days)")
+    st.subheader("Top High Value Customers (Last 30 Days)")
     q_top_cust = """
         SELECT customer_id, SUM(net_amount) AS revenue_30d
         FROM ccdataset.transaction
