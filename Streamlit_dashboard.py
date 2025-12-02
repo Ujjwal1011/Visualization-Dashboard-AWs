@@ -11,8 +11,6 @@ import os
 key_id = os.environ.get("AWS_ACCESS_KEY_ID", "")
 secret = os.environ.get("AWS_SECRET_ACCESS_KEY", "")
 
-st.write(f"DEBUG: Access Key Length: {len(key_id)}")
-st.write(f"DEBUG: Secret Key Length: {len(secret)}")
 # --- 1. LOAD ENVIRONMENT VARIABLES ---
 # This looks for a .env file to load AWS credentials safely
 load_dotenv()
